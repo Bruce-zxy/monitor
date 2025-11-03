@@ -1,22 +1,27 @@
 #!/usr/bin/env node
 
-const { program } = require('commander');
+const {
+  program
+} = require('commander');
 const chalk = require('chalk');
 const figlet = require('figlet');
 const MonitorServer = require('../lib/server');
 const Dashboard = require('../lib/dashboard');
+const packageJson = require('../package.json');
 
 // 显示 banner
 console.log(
   chalk.green(
-    figlet.textSync('Monitor Server', { horizontalLayout: 'full' })
+    figlet.textSync('Monitor Server', {
+      horizontalLayout: 'full'
+    })
   )
 );
 
 program
   .name('monitor-server')
   .description('Server monitoring system - Server')
-  .version('1.0.0')
+  .version(packageJson.version)
   .option('-m, --mongo-uri <uri>', 'MongoDB connection URI', 'mongodb://localhost:27017/monitoring')
   .option('--http-port <port>', 'HTTP receiver port', '3100')
   .option('--udp-port <port>', 'UDP receiver port', '41234')
