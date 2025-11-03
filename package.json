@@ -1,6 +1,6 @@
 {
   "name": "@hadesz/monitor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A complete server monitoring system with agents, server and dashboard",
   "main": "lib/index.js",
   "bin": {
