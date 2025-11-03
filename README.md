@@ -2,7 +2,7 @@
  * @Author: HadesZ
  * @Date: 2025-11-03 12:18:51
  * @LastEditors: HadesZ
- * @LastEditTime: 2025-11-03 16:08:27
+ * @LastEditTime: 2025-11-03 16:27:16
  * @Description: 
 -->
 # Server Monitor System
@@ -13,13 +13,17 @@ A complete server monitoring system with agents, monitoring server, and dashboar
 
 ### Global Installation (Recommended)
 ```bash
-npm install -g server-monitor-system
+npm install -g @hadesz/monitor
 
 ```
 
 ## Usage
 ```bash
-monitor-agent --host monitor.example.com --interval 15000
+# Server Side
+monitor-server
+
+# Agent Side
+monitor-agent -i my-server-name --host monitor.example.com --interval 5000
 ```
 
 ### Options
