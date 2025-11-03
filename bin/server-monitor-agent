@@ -1,0 +1,73 @@
+#!/usr/bin/env node
+
+const { program } = require('commander');
+const chalk = require('chalk');
+const figlet = require('figlet');
+const os = require('os');
+const MonitorAgent = require('../lib/agent');
+
+// 显示 banner
+console.log(
+  chalk.blue(
+    figlet.textSync('Monitor Agent', { horizontalLayout: 'full' })
+  )
+);
+
+program
+  .name('server-monitor-agent')
+  .description('Server monitoring system - Agent')
+  .version('1.0.0')
+  .requiredOption('-i, --id <id>', 'Agent ID')
+  .option('-h, --host <host>', 'Monitor server host', 'localhost')
+  .option('--http-port <port>', 'Monitor server HTTP port', '3000')
+  .option('--udp-port <port>', 'Monitor server UDP port', '41234')
+  .option('-I, --interval <ms>', 'Collection interval in milliseconds', '10000')
+  .option('-v, --verbose', 'Enable verbose logging')
+  .option('--config <path>', 'Path to config file')
+  .parse(process.argv);
+
+const options = program.opts();
+
+// 验证必要参数
+if (!options.host) {
+  console.error(chalk.red('Error: Monitor server host is required'));
+  process.exit(1);
+}
+
+// 创建并启动采集端
+const agentConfig = {
+  agentId: options.id,
+  server: {
+    host: options.host,
+    httpPort: parseInt(options.httpPort),
+    udpPort: parseInt(options.udpPort)
+  },
+  interval: parseInt(options.interval),
+  verbose: options.verbose
+};
+
+console.log(chalk.green('Starting server monitor agent...'));
+console.log(chalk.cyan(`Agent ID: ${agentConfig.agentId}`));
+console.log(chalk.cyan(`Target: ${agentConfig.server.host}:${agentConfig.server.httpPort}`));
+console.log(chalk.cyan(`Interval: ${agentConfig.interval}ms`));
+
+const agent = new MonitorAgent(agentConfig);
+
+// 优雅关闭
+process.on('SIGINT', async () => {
+  console.log(chalk.yellow('\nShutting down agent...'));
+  await agent.stop();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  console.log(chalk.yellow('\nShutting down agent...'));
+  await agent.stop();
+  process.exit(0);
+});
+
+// 启动采集端
+agent.start().catch(error => {
+  console.error(chalk.red('Failed to start agent:'), error);
+  process.exit(1);
+});

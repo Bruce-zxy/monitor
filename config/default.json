@@ -1,0 +1,21 @@
+{
+  "agent": {
+    "defaultInterval": 10000,
+    "maxRetries": 3,
+    "retryDelay": 2000
+  },
+  "server": {
+    "httpPort": 3000,
+    "udpPort": 41234,
+    "dashboardPort": 4000
+  },
+  "database": {
+    "mongoUri": "mongodb://localhost:27017/monitoring",
+    "collection": "metrics",
+    "dataRetentionDays": 30
+  },
+  "dashboard": {
+    "port": 4000,
+    "refreshInterval": 30000
+  }
+}

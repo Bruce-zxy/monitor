@@ -1,0 +1,66 @@
+#!/usr/bin/env node
+
+const { program } = require('commander');
+const chalk = require('chalk');
+const figlet = require('figlet');
+const MonitorServer = require('../lib/server');
+const Dashboard = require('../lib/dashboard');
+
+// 显示 banner
+console.log(
+  chalk.green(
+    figlet.textSync('Monitor Server', { horizontalLayout: 'full' })
+  )
+);
+
+program
+  .name('server-monitor-server')
+  .description('Server monitoring system - Server')
+  .version('1.0.0')
+  .option('-m, --mongo-uri <uri>', 'MongoDB connection URI', 'mongodb://localhost:27017/monitoring')
+  .option('--http-port <port>', 'HTTP receiver port', '3000')
+  .option('--udp-port <port>', 'UDP receiver port', '41234')
+  .option('--dashboard-port <port>', 'Dashboard port', '4000')
+  .option('-v, --verbose', 'Enable verbose logging')
+  .option('--no-dashboard', 'Disable dashboard')
+  .parse(process.argv);
+
+const options = program.opts();
+
+console.log(chalk.green('Starting server monitor server...'));
+console.log(chalk.cyan(`HTTP Port: ${options.httpPort}`));
+console.log(chalk.cyan(`UDP Port: ${options.udpPort}`));
+console.log(chalk.cyan(`Dashboard: ${options.dashboard ? 'Enabled' : 'Disabled'}`));
+if (options.dashboard) {
+  console.log(chalk.cyan(`Dashboard Port: ${options.dashboardPort}`));
+}
+
+const serverConfig = {
+  mongoUri: options.mongoUri,
+  httpPort: parseInt(options.httpPort),
+  udpPort: parseInt(options.udpPort),
+  dashboardPort: parseInt(options.dashboardPort),
+  enableDashboard: options.dashboard,
+  verbose: options.verbose
+};
+
+const server = new MonitorServer(serverConfig);
+
+// 优雅关闭
+process.on('SIGINT', async () => {
+  console.log(chalk.yellow('\nShutting down monitor server...'));
+  await server.stop();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  console.log(chalk.yellow('\nShutting down monitor server...'));
+  await server.stop();
+  process.exit(0);
+});
+
+// 启动服务器
+server.start().catch(error => {
+  console.error(chalk.red('Failed to start server:'), error);
+  process.exit(1);
+});

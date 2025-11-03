@@ -1,0 +1,56 @@
+{
+  "name": "server-monitor-system",
+  "version": "1.0.0",
+  "description": "A complete server monitoring system with agents, server and dashboard",
+  "main": "lib/index.js",
+  "bin": {
+    "server-monitor-agent": "./bin/server-monitor-agent",
+    "server-monitor-server": "./bin/server-monitor-server"
+  },
+  "scripts": {
+    "postinstall": "node scripts/install.js",
+    "start:agent": "node bin/server-monitor-agent",
+    "start:server": "node bin/server-monitor-server",
+    "test": "echo \"No tests specified\" && exit 0",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "monitoring",
+    "server",
+    "dashboard",
+    "metrics",
+    "performance",
+    "system"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/server-monitor-system"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "commander": "^9.4.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "ws": "^8.12.0",
+    "node-fetch": "^3.3.0",
+    "chalk": "^4.1.2",
+    "figlet": "^1.5.2",
+    "config": "^3.3.8",
+    "os-utils": "^0.0.14"
+  },
+  "devDependencies": {
+    "pm2": "^5.2.2"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "config/",
+    "scripts/",
+    "README.md",
+    "LICENSE"
+  ]
+}
