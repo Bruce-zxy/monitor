@@ -13,19 +13,19 @@ const isGlobal =
 if (isGlobal) {
   console.log("📦 Global installation detected");
   console.log("✅ CLI commands are now available:");
-  console.log("   server-monitor-agent    - Start monitoring agent");
-  console.log("   server-monitor-server   - Start monitoring server");
+  console.log("   monitor-agent    - Start monitoring agent");
+  console.log("   monitor-server   - Start monitoring server");
 } else {
   console.log("📦 Local installation detected");
   console.log("✅ You can use the commands via npx:");
-  console.log("   npx server-monitor-agent");
-  console.log("   npx server-monitor-server");
+  console.log("   npx monitor-agent");
+  console.log("   npx monitor-server");
 }
 
 console.log("\n📚 Usage examples:");
 console.log(
-  "   server-monitor-agent --host monitor.example.com --interval 15000"
+  "   monitor-agent -i my-server --host monitor.example.com --interval 15000"
 );
 console.log(
-  '   server-monitor-server --mongo-uri "mongodb://localhost:27017/monitoring"'
+  '   monitor-server --mongo-uri "mongodb://localhost:27017/monitoring"'
 );

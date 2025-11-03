@@ -14,11 +14,11 @@ console.log(
 );
 
 program
-  .name('server-monitor-server')
+  .name('monitor-server')
   .description('Server monitoring system - Server')
   .version('1.0.0')
   .option('-m, --mongo-uri <uri>', 'MongoDB connection URI', 'mongodb://localhost:27017/monitoring')
-  .option('--http-port <port>', 'HTTP receiver port', '3000')
+  .option('--http-port <port>', 'HTTP receiver port', '3100')
   .option('--udp-port <port>', 'UDP receiver port', '41234')
   .option('--dashboard-port <port>', 'Dashboard port', '4000')
   .option('-v, --verbose', 'Enable verbose logging')

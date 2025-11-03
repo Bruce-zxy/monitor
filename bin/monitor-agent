@@ -14,12 +14,12 @@ console.log(
 );
 
 program
-  .name('server-monitor-agent')
+  .name('monitor-agent')
   .description('Server monitoring system - Agent')
   .version('1.0.0')
   .requiredOption('-i, --id <id>', 'Agent ID')
   .option('-h, --host <host>', 'Monitor server host', 'localhost')
-  .option('--http-port <port>', 'Monitor server HTTP port', '3000')
+  .option('--http-port <port>', 'Monitor server HTTP port', '3100')
   .option('--udp-port <port>', 'Monitor server UDP port', '41234')
   .option('-I, --interval <ms>', 'Collection interval in milliseconds', '10000')
   .option('-v, --verbose', 'Enable verbose logging')

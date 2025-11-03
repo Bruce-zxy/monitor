@@ -1,16 +1,16 @@
 {
-  "name": "server-monitor-system",
+  "name": "@hadesz/monitor",
   "version": "1.0.0",
   "description": "A complete server monitoring system with agents, server and dashboard",
   "main": "lib/index.js",
   "bin": {
-    "server-monitor-agent": "./bin/server-monitor-agent",
-    "server-monitor-server": "./bin/server-monitor-server"
+    "monitor-agent": "./bin/monitor-agent",
+    "monitor-server": "./bin/monitor-server"
   },
   "scripts": {
     "postinstall": "node scripts/install.js",
-    "start:agent": "node bin/server-monitor-agent",
-    "start:server": "node bin/server-monitor-server",
+    "start:agent": "node bin/monitor-agent",
+    "start:server": "node bin/monitor-server",
     "test": "echo \"No tests specified\" && exit 0",
     "prepublishOnly": "npm test"
   },
@@ -22,11 +22,11 @@
     "performance",
     "system"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "Bruce_zxy<bruce_zxy@163.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/server-monitor-system"
+    "url": "https://github.com/Bruce-zxy/monitor"
   },
   "engines": {
     "node": ">=14.0.0"
@@ -44,6 +44,9 @@
   },
   "devDependencies": {
     "pm2": "^5.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "bin/",

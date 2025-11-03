@@ -5,7 +5,7 @@
     "retryDelay": 2000
   },
   "server": {
-    "httpPort": 3000,
+    "httpPort": 3100,
     "udpPort": 41234,
     "dashboardPort": 4000
   },
@@ -16,6 +16,6 @@
   },
   "dashboard": {
     "port": 4000,
-    "refreshInterval": 30000
+    "refreshInterval": 10000
   }
 }
