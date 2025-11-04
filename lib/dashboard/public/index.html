@@ -93,6 +93,36 @@
     .status-offline {
       background: #e74c3c;
     }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-card {
+      background: white;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-card h4 {
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
+    .info-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #3498db;
+    }
+
+    .info-label {
+      font-size: 0.8rem;
+      color: #7f8c8d;
+    }
   </style>
 </head>
 
@@ -118,6 +148,11 @@
 
       <button onclick="refreshData()">刷新</button>
       <span id="status"></span>
+    </div>
+
+    <!-- 系统信息卡片 -->
+    <div class="info-grid" id="systemInfo">
+      <!-- 动态生成的系统信息卡片 -->
     </div>
 
     <div class="chart-grid">
@@ -149,6 +184,17 @@
       <div class="chart-container">
         <h3>网络 IO (KB/s)</h3>
         <canvas id="networkChart" class="chart"></canvas>
+      </div>
+
+      <!-- 新增 Docker 相关图表 -->
+      <div class="chart-container">
+        <h3>Docker 容器状态</h3>
+        <canvas id="dockerContainersChart" class="chart"></canvas>
+      </div>
+
+      <div class="chart-container">
+        <h3>进程状态</h3>
+        <canvas id="processesChart" class="chart"></canvas>
       </div>
     </div>
   </div>
